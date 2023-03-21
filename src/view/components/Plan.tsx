@@ -6,7 +6,7 @@ export interface Semester {
   modules: Module[]
 }
 
-export interface PlanProps {
+interface PlanProps {
   sems: Semester[]
 }
 
