@@ -1,15 +1,10 @@
 import { Center, Heading, VStack, Text, HStack, Table, Thead, Th, Tbody, Tr, Td, Tag, TagLabel, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Flex, Spacer } from "@chakra-ui/react";
+import Section from "./components/Section";
 
 export default function PlansPage() {
   return (
-    <Center height='100vh' width='100vw'>
-      <VStack width='80%' spacing='2rem'>
-        <VStack width='100%' align='start' spacing='2rem'>
-          <Heading size='4xl'>Plans</Heading>
-          <Text>Here are your recommended plans.</Text>
-        </VStack>
-
-        <Accordion width='100%' borderWidth='1px' allowToggle allowMultiple>
+    <Section title='Plans' description='Here are your recommended plans.'>
+      <Accordion width='100%' borderWidth='1px' allowToggle allowMultiple>
           <AccordionItem>
             <AccordionButton>
               <Flex width='100%'>
@@ -98,7 +93,6 @@ export default function PlansPage() {
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
-      </VStack>
-    </Center>
+    </Section>
   )
 }
