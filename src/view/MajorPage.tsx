@@ -1,5 +1,6 @@
 import { Center, Heading, VStack } from '@chakra-ui/layout'
 import { Text, Box, Image, useRadio } from '@chakra-ui/react'
+import Section from './components/Section'
 
 export default function MajorPage() {
   const MajorRadio = (props: any) => {
@@ -24,15 +25,8 @@ export default function MajorPage() {
   }
 
   return (
-    <Center height='100vh' width='100vw'>
-      <VStack width='80%' spacing='2rem'>
-        <VStack width='100%' align='start' spacing='2rem'>
-          <Heading size='4xl'>Major</Heading>
-          <Text>Choose your major.</Text>
-        </VStack>
-
-        <MajorRadio/>
-      </VStack>
-    </Center>
+    <Section title='Major' description='Choose your major.'>
+      <MajorRadio />
+    </Section>
   )
 }
