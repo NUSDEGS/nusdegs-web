@@ -4,19 +4,18 @@ const APP_SERVER_URL: string = "server address";
 var seq : number = 0;
 
 async function sendToApplication(
-    data: JSON
+    data: Object
 ) {
-    var res : Response;
     try {
-        res = await fetch(APP_SERVER_URL, {
-            method: "GET",
-            body: JSON.stringify(data),
+        const res = await fetch(APP_SERVER_URL, {
+            method: "POST",
+            body: JSON.stringify(data)
         });
-    } catch (err) {
-        res = Response.error();
-    }
 
-    return res;
+        return await res.json();
+    } catch (err) {
+        throw err;
+    }
 }
 
 export default async function HandleRequest(
@@ -24,6 +23,10 @@ export default async function HandleRequest(
     res: NextApiResponse
 ) {
     try {
+        if (req.method != "POST") {
+            throw new Error("Operation not allowed.");
+        }
+
         const data = JSON.parse(req.body);
 
         // Preprocessing if needed
@@ -33,13 +36,13 @@ export default async function HandleRequest(
         const result = await sendToApplication(data);
 
         if (!result.ok) {
-            res.status(result.status).json(result.body);
+            res.status(500).send(result);
         } else {
-            res.status(200).json(result.body);
+            res.status(200).send(result);
         }
     } catch (err) {
         if (err instanceof Error) {
-            res.status(500).send("Unknown error. ");
+            res.status(500).send(err.message);
         }
     }
 }
