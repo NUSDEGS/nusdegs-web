@@ -36,7 +36,7 @@ export default function HandleRequest(
 
     } catch (err) {
         if (err instanceof Error) {
-            res.status(200).
+            res.status(500).send("Unknown error. ");
         }
     }
 }
