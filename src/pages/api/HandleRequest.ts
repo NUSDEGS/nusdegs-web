@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-declare const APP_SERVER_URL: string = "server address";
+const APP_SERVER_URL: string = "server address";
 
 async function sendToApplication(
     data: JSON
@@ -18,7 +18,7 @@ async function sendToApplication(
     return res;
 }
 
-export default function HandleRequest(
+export default async function HandleRequest(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
