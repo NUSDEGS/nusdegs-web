@@ -17,59 +17,60 @@ export default function Generate() {
     </Head>
 
     <main>
-      <Section
-        title='Major'
-        description='Choose your major.'
-        hidden={currentSectionIndex !== 0}
-        {...getRootProps()}
-      >
-        <ImageRadio
-          image='https://www.svgrepo.com/show/12668/computer.svg'
-          label='Computer Science'
-          key='computer science'
-          {...getRadioProps({ value: 'computer science' })}
-        />
-      </Section>
-
-      <Section
-        title='All Good?'
-        description='Check your choices.'
-        hidden={currentSectionIndex !== 1}
-      >
-        <HStack>
-            <VStack align='end'>
-              <Text as='b'>Major</Text>
-              <Text as='b'>Focus Areas</Text>
-            </VStack>
-
-            <Divider orientation='vertical' />
-
-            <VStack align='start'>
-              <Text>Computer Science</Text>
-              <Text>Networking, and Databases</Text>
-            </VStack>
-          </HStack>
-      </Section>
-
-      <Section
-        title='Plans'
-        description='Here are your recommended plans.'
-        hidden={currentSectionIndex !== 2}
-      >
-        <Plan sems={[]} />
-      </Section>
-
-      <Center>
-        <Button
-          colorScheme='green'
-          onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-          isDisabled={currentSectionIndex === 2}
+      <form>
+        <Section
+          title='Major'
+          description='Choose your major.'
+          hidden={currentSectionIndex !== 0}
         >
-          {
-            currentSectionIndex < 1 ? 'Next' : 'Done'
-          }
-        </Button>
-      </Center>
+          <ImageRadio
+            image='https://www.svgrepo.com/show/12668/computer.svg'
+            label='Computer Science'
+            key='computer science'
+            {...getRadioProps({ value: 'computer science' })}
+          />
+        </Section>
+
+        <Section
+          title='All Good?'
+          description='Check your choices.'
+          hidden={currentSectionIndex !== 1}
+        >
+          <HStack>
+              <VStack align='end'>
+                <Text as='b'>Major</Text>
+                <Text as='b'>Focus Areas</Text>
+              </VStack>
+
+              <Divider orientation='vertical' />
+
+              <VStack align='start'>
+                <Text>Computer Science</Text>
+                <Text>Networking, and Databases</Text>
+              </VStack>
+            </HStack>
+        </Section>
+
+        <Section
+          title='Plans'
+          description='Here are your recommended plans.'
+          hidden={currentSectionIndex !== 2}
+        >
+          <Plan sems={[]} />
+        </Section>
+
+        <Center>
+          <Button
+            colorScheme='green'
+            onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
+            isDisabled={currentSectionIndex === 2}
+          >
+            {
+              currentSectionIndex < 1 ? 'Next' : 'Done'
+            }
+          </Button>
+        </Center>
+      </form>
     </main>
   </ChakraProvider>
   )
