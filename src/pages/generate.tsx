@@ -71,11 +71,18 @@ export default function Generate() {
             <Button
               colorScheme='green'
               onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              isDisabled={currentSectionIndex === 2}
+              hidden={currentSectionIndex > 0}
             >
-              {
-                currentSectionIndex < 1 ? 'Next' : 'Done'
-              }
+              Next
+            </Button>
+
+            <Button
+              colorScheme='green'
+              onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
+              isDisabled={currentSectionIndex > 1}
+              hidden={currentSectionIndex < 1}
+            >
+              Done
             </Button>
           </Center>
         </form>
