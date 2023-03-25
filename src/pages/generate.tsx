@@ -5,10 +5,12 @@ import Section from '@/view/components/Section'
 import { Button, Center, ChakraProvider, Divider, HStack, Text, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
-           
+import { useForm, Controller, useWatch } from 'react-hook-form'
+
 export default function Generate() {
   const { control } = useForm()
+  const majorWatch = useWatch({ control, name: 'major' })
+
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
 
   return (
@@ -52,7 +54,7 @@ export default function Generate() {
               <Divider orientation='vertical' />
 
               <VStack align='start'>
-                <Text>Computer Science</Text>
+                <Text>{majorWatch}</Text>
                 <Text>Networking, and Databases</Text>
               </VStack>
             </HStack>
