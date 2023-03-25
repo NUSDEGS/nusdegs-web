@@ -33,7 +33,7 @@ export default function Generate() {
                   {...field}
                   image='https://www.svgrepo.com/show/12668/computer.svg'
                   label='Computer Science'
-                  value='computerScience'
+                  value='Computer Science'
                 />
               )}
             />
