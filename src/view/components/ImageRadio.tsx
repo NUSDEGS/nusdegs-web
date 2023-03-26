@@ -22,7 +22,7 @@ export default function ImageRadio(props: ImageRadioProps) {
         <input hidden {...getInputProps()} />
         
         <Center boxSize='8rem' {...getCheckboxProps()}>
-          <Image src={image} {...getLabelProps()}/>
+          <Image src={image} width='6rem' {...getLabelProps()}/>
         </Center>
 
         <Text as='b' color={state.isChecked ? 'green.500' : ''}>{label}</Text>
