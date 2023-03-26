@@ -7,6 +7,49 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { useForm, Controller, useWatch } from 'react-hook-form'
 
+const FAS = [
+  {
+    label: 'Algorithms and Theory',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Artificial Intelligence',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Computer Graphics and Games',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Computer Security',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Database Systems',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Multimedia Information Retrieval',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Networking and Distributed Systems',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Parallel Computing',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Programming Languages',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  },
+  {
+    label: 'Software Engineering',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+  }
+]
+
 export default function Generate() {
   const { control } = useForm()
   const majorWatch = useWatch({ control, name: 'major' })
