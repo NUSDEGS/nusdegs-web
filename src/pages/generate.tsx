@@ -75,7 +75,7 @@ export default function Generate() {
               render={({field}) => (
                 <ImageRadio
                   {...field}
-                  image='https://www.svgrepo.com/show/12668/computer.svg'
+                  image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/computer/default/48px.svg'
                   label='Computer Science'
                   value='Computer Science'
                 />
