@@ -1,3 +1,4 @@
+import ImageCheckbox from '@/view/components/ImageCheckbox'
 import ImageRadio from '@/view/components/ImageRadio'
 import Plan from '@/view/components/Plan'
 import Section from '@/view/components/Section'
@@ -80,6 +81,28 @@ export default function Generate() {
                 />
               )}
             />
+          </Section>
+
+          <Section
+            title='Focus Areas'
+            description='Choose your focus areas.'
+          >
+            {
+              FAS.map(fa => (
+                <Controller
+                  name='fas'
+                  control={control}
+                  render={({field}) => (
+                    <ImageCheckbox
+                      {...field}
+                      image={fa.image}
+                      label={fa.label}
+                      value={fa.label}
+                    />
+                  )}
+                />
+              ))
+            }
           </Section>
 
           <Section
