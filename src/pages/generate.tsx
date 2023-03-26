@@ -3,7 +3,7 @@ import ImageRadio from '@/view/components/ImageRadio'
 import Plan from '@/view/components/Plan'
 import Section from '@/view/components/Section'
 
-import { Button, Center, ChakraProvider, Divider, HStack, Text, VStack } from '@chakra-ui/react'
+import { Button, Center, ChakraProvider, Divider, Flex, HStack, Text, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { useForm, Controller, useWatch } from 'react-hook-form'
@@ -88,22 +88,24 @@ export default function Generate() {
             description='Choose your focus areas.'
             hidden={currentSectionIndex !== 1}
           >
-            {
-              FAS.map(fa => (
-                <Controller
-                  name='fas'
-                  control={control}
-                  render={({field}) => (
-                    <ImageCheckbox
-                      {...field}
-                      image={fa.image}
-                      label={fa.label}
-                      value={fa.label}
-                    />
-                  )}
-                />
-              ))
-            }
+            <Flex wrap='wrap' justify='center'>
+              {
+                FAS.map(fa => (
+                  <Controller
+                    name='fas'
+                    control={control}
+                    render={({field}) => (
+                      <ImageCheckbox
+                        {...field}
+                        image={fa.image}
+                        label={fa.label}
+                        value={fa.label}
+                      />
+                    )}
+                  />
+                ))
+              }
+            </Flex>
           </Section>
 
           <Section
