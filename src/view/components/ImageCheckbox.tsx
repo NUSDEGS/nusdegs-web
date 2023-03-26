@@ -17,7 +17,7 @@ export default function ImageCheckbox(props: ImageCheckboxProps) {
   } = useCheckbox(checkboxProps)
 
   return (
-    <Box as='label'>
+    <Box as='label' width='8rem'>
       <VStack cursor='pointer'>
         <input hidden {...getInputProps()} />
         
