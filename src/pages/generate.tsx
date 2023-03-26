@@ -11,43 +11,43 @@ import { useForm, Controller, useWatch } from 'react-hook-form'
 const FAS = [
   {
     label: 'Algorithms and Theory',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/function/default/48px.svg'
   },
   {
     label: 'Artificial Intelligence',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/neurology/default/48px.svg'
   },
   {
     label: 'Computer Graphics and Games',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/sports_esports/default/48px.svg'
   },
   {
     label: 'Computer Security',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/shield_lock/default/48px.svg'
   },
   {
     label: 'Database Systems',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/database/default/48px.svg'
   },
   {
     label: 'Multimedia Information Retrieval',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/video_camera_back/default/48px.svg'
   },
   {
     label: 'Networking and Distributed Systems',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/router/default/48px.svg'
   },
   {
     label: 'Parallel Computing',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/memory/default/48px.svg'
   },
   {
     label: 'Programming Languages',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/regular_expression/default/48px.svg'
   },
   {
     label: 'Software Engineering',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/3/39/Lambda_lc.svg'
+    image: 'https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/app_shortcut/default/48px.svg'
   }
 ]
 
