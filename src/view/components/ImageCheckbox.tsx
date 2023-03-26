@@ -25,7 +25,7 @@ export default function ImageCheckbox(props: ImageCheckboxProps) {
           <Image src={image} {...getLabelProps()}/>
         </Box>
 
-        <Text as='b' color={state.isChecked ? 'green.500' : ''}>{label}</Text>
+        <Text as='b' color={state.isChecked ? 'green.500' : ''} align='center'>{label}</Text>
       </VStack>
     </Box>
   )
