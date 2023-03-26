@@ -1,4 +1,4 @@
-import { Box, VStack, Text, Image, UseCheckboxProps, useCheckbox } from "@chakra-ui/react";
+import { Box, VStack, Text, Image, UseCheckboxProps, useCheckbox, Center } from "@chakra-ui/react";
 
 interface ImageCheckboxProps extends UseCheckboxProps {
   image: string
@@ -21,9 +21,9 @@ export default function ImageCheckbox(props: ImageCheckboxProps) {
       <VStack cursor='pointer'>
         <input hidden {...getInputProps()} />
         
-        <Box boxSize='8rem' {...getCheckboxProps()}>
+        <Center boxSize='8rem' {...getCheckboxProps()}>
           <Image src={image} {...getLabelProps()}/>
-        </Box>
+        </Center>
 
         <Text as='b' color={state.isChecked ? 'green.500' : ''} align='center'>{label}</Text>
       </VStack>
