@@ -86,6 +86,7 @@ export default function Generate() {
           <Section
             title='Focus Areas'
             description='Choose your focus areas.'
+            hidden={currentSectionIndex !== 1}
           >
             {
               FAS.map(fa => (
@@ -108,7 +109,7 @@ export default function Generate() {
           <Section
             title='All Good?'
             description='Check your choices.'
-            hidden={currentSectionIndex !== 1}
+            hidden={currentSectionIndex !== 2}
           >
             <HStack>
                 <VStack align='end'>
@@ -128,7 +129,7 @@ export default function Generate() {
           <Section
             title='Plans'
             description='Here are your recommended plans.'
-            hidden={currentSectionIndex !== 2}
+            hidden={currentSectionIndex !== 3}
           >
             <Plan sems={[]} />
           </Section>
@@ -137,7 +138,7 @@ export default function Generate() {
             <Button
               colorScheme='green'
               onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              hidden={currentSectionIndex > 0}
+              hidden={currentSectionIndex > 1}
             >
               Next
             </Button>
@@ -145,8 +146,8 @@ export default function Generate() {
             <Button
               colorScheme='green'
               onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              isDisabled={currentSectionIndex > 1}
-              hidden={currentSectionIndex < 1}
+              isDisabled={currentSectionIndex > 2}
+              hidden={currentSectionIndex < 2}
             >
               Done
             </Button>
