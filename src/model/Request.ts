@@ -1,3 +1,8 @@
+interface Fa {
+  name: string
+  modules: string[]
+}
+
 export default interface Request {
   id: number
   major: string
