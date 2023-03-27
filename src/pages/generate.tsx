@@ -186,6 +186,28 @@ export default function Generate() {
           </Section>
 
           <Section
+            title='Focus Area Modules'
+            description='Choose your preferred modules for your focus areas.'
+            hidden={currentSectionIndex !== 2}
+          >
+            <Flex width='100%' align='start' justify='space-around'>
+            {
+              getChosenFaLabels(fasWatch)
+                .map(faLabel => FAS.find(fa => fa.label === faLabel))
+                .map(fa => (
+                  <VStack align='start'>
+                    <Heading size='sm'>{fa?.label}</Heading>
+                    {
+                      fa?.modules
+                      .map(module => <Checkbox>{`${module.code} ${module.title}`}</Checkbox>)
+                    }
+                  </VStack>
+                ))
+            }
+            </Flex>
+          </Section>
+
+          <Section
             title='All Good?'
             description='Check your choices.'
             hidden={currentSectionIndex !== 2}
