@@ -92,7 +92,7 @@ export default function Generate() {
               {
                 FAS.map(fa => (
                   <Controller
-                    name='fas'
+                    name={`fas.${fa.label}`}
                     control={control}
                     render={({field}) => (
                       <ImageCheckbox
