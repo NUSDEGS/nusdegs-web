@@ -223,7 +223,7 @@ export default function Generate() {
           <Section
             title='All Good?'
             description='Check your choices.'
-            hidden={currentSectionIndex !== 2}
+            hidden={currentSectionIndex !== 3}
           >
             <HStack>
                 <VStack align='end'>
@@ -260,7 +260,7 @@ export default function Generate() {
           <Section
             title='Plans'
             description='Here are your recommended plans.'
-            hidden={currentSectionIndex !== 3}
+            hidden={currentSectionIndex !== 4}
           >
             <Plan sems={[]} />
           </Section>
@@ -269,7 +269,7 @@ export default function Generate() {
             <Button
               colorScheme='green'
               onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              hidden={currentSectionIndex > 1}
+              hidden={currentSectionIndex > 2}
             >
               Next
             </Button>
@@ -277,8 +277,8 @@ export default function Generate() {
             <Button
               colorScheme='green'
               onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              isDisabled={currentSectionIndex > 2}
-              hidden={currentSectionIndex < 2}
+              isDisabled={currentSectionIndex > 3}
+              hidden={currentSectionIndex < 3}
             >
               Done
             </Button>
