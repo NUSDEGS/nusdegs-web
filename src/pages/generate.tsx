@@ -132,6 +132,7 @@ export default function Generate() {
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
   const majorWatch = useWatch({ control, name: 'major' })
   const fasWatch = useWatch({ control, name: 'fas' })
+  const modulesWatch = useWatch({ control, name: 'modules' })
 
   return (
     <ChakraProvider>
@@ -228,6 +229,7 @@ export default function Generate() {
                 <VStack align='end'>
                   <Text as='b'>Major</Text>
                   <Text as='b'>Focus Areas</Text>
+                  <Text as='b'>Preferred Modules</Text>
                 </VStack>
 
                 <Divider orientation='vertical' />
@@ -242,6 +244,14 @@ export default function Generate() {
                         .map(([faName, _]) => faName)
                         .join(', and ')
                     }
+                  </Text>
+                  <Text>
+                  {
+                    Object.values(modulesWatch ?? {})
+                      .filter(module => !!module)
+                      .flatMap(module => module)
+                      .join(', ')
+                  }
                   </Text>
                 </VStack>
               </HStack>
