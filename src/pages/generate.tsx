@@ -123,8 +123,9 @@ const FAS = [
 
 export default function Generate() {
   const { control } = useForm()
-  const majorWatch = useWatch({ control, name: 'major' })
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
+  const majorWatch = useWatch({ control, name: 'major' })
+  const fasWatch = useWatch({ control, name: 'fas' })
 
   return (
     <ChakraProvider>
@@ -193,7 +194,15 @@ export default function Generate() {
 
                 <VStack align='start'>
                   <Text>{majorWatch}</Text>
-                  <Text>Networking, and Databases</Text>
+                  <Text>
+                    {
+                      // fasWatch is undefined at first before FAs are chosen by the user.
+                      Object.entries(fasWatch ?? {})
+                        .filter(([_, isFaChosen]) => isFaChosen)
+                        .map(([faName, _]) => faName)
+                        .join(', ')
+                    }
+                  </Text>
                 </VStack>
               </HStack>
           </Section>
