@@ -12,7 +12,12 @@ export default interface Request {
 export function getRequestJson(requestFormData: any): Request {
   return {
     id: 0,  // TODO needs to be changed for each request.
-    major: requestFormData['major'] ?? 'Computer Science'  // Computer Science is chosen by
-                                                           // default.
+    major: requestFormData['major'] ?? 'Computer Science',  // Computer Science is chosen by
+                                                            // default.
+    fas: Object.entries(requestFormData['modules'])
+      .map(([fa, modules]): Fa => {
+        const moduleStrings = modules as string[]
+        return {name: fa, modules: moduleStrings}
+       })
   }
 }
