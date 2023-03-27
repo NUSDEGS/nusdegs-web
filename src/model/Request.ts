@@ -6,6 +6,7 @@ interface Fa {
 export default interface Request {
   id: number
   major: string
+  fas: Fa[]
 }
 
 export function getRequestJson(requestFormData: any): Request {
