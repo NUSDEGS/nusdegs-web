@@ -200,7 +200,7 @@ export default function Generate() {
                       Object.entries(fasWatch ?? {})
                         .filter(([_, isFaChosen]) => isFaChosen)
                         .map(([faName, _]) => faName)
-                        .join(', ')
+                        .join(', and ')
                     }
                   </Text>
                 </VStack>
