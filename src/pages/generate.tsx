@@ -121,6 +121,12 @@ const FAS = [
   }
 ]
 
+function getChosenFaLabels(fasWatch: any) {
+  return Object.entries(fasWatch ?? {})
+    .filter(([_, isFaChosen]) => isFaChosen)
+    .map(([faLabel, _]) => faLabel)
+}
+
 export default function Generate() {
   const { control } = useForm()
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
