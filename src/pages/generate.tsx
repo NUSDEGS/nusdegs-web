@@ -3,7 +3,7 @@ import ImageRadio from '@/view/components/ImageRadio'
 import Plan from '@/view/components/Plan'
 import Section from '@/view/components/Section'
 
-import { Button, Center, ChakraProvider, Divider, Flex, HStack, Text, VStack } from '@chakra-ui/react'
+import { Button, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Text, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { useForm, Controller, useWatch } from 'react-hook-form'
@@ -199,7 +199,19 @@ export default function Generate() {
                     <Heading size='sm'>{fa?.label}</Heading>
                     {
                       fa?.modules
-                      .map(module => <Checkbox>{`${module.code} ${module.title}`}</Checkbox>)
+                      .map(module => (
+                        <Controller
+                          name={`modules.${fa.label}`}
+                          control={control}
+                          render={({field}) => (
+                            <CheckboxGroup {...field}>
+                              <Checkbox value={`${module.code} ${module.title}`}>
+                                {`${module.code} ${module.title}`}
+                              </Checkbox>
+                            </CheckboxGroup>
+                          )}
+                        />
+                      ))
                     }
                   </VStack>
                 ))
