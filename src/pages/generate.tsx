@@ -3,7 +3,7 @@ import ImageRadio from '@/view/components/ImageRadio'
 import Plan from '@/view/components/Plan'
 import Section from '@/view/components/Section'
 
-import { Button, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Text, VStack } from '@chakra-ui/react'
+import { Button, Card, CardBody, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Radio, RadioGroup, Text, useRadioGroup, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { useForm, Controller, useWatch } from 'react-hook-form'
@@ -130,6 +130,7 @@ function getChosenFaLabels(fasWatch: any) {
 export default function Generate() {
   const { control } = useForm()
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
+  const { getRadioProps, getRootProps } = useRadioGroup()
   const majorWatch = useWatch({ control, name: 'major' })
   const fasWatch = useWatch({ control, name: 'fas' })
   const modulesWatch = useWatch({ control, name: 'modules' })
@@ -218,6 +219,45 @@ export default function Generate() {
                 ))
             }
             </Flex>
+          </Section>
+
+          <Section
+            title='Internship or FYP?'
+            description='Choose your internship or final-year project (FYP) preference.'
+            hidden={currentSectionIndex !== 3}
+          >
+            <Controller
+              name='internshipFyp'
+              control={control}
+              render={({field}) => (
+                  <HStack {...getRootProps()} {...field}>
+                    <HStack>
+                      <Card variant='outline'>
+                        <CardBody>
+                          <Heading>Internship</Heading>
+                          <HStack>
+                            <ImageRadio image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/engineering/default/48px.svg' label='' isDisabled />
+                            <ImageRadio image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_6/default/48px.svg' label='Months' {...getRadioProps({ value: '6mth' })}/>
+                            <ImageRadio image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_3/default/48px.svg' label='Months' {...getRadioProps({ value: '3mth' })}/>
+                            <ImageRadio image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/filter_3/default/48px.svg' label='Months Each for 2 Internships' {...getRadioProps({ value: '3mth2' })}/>
+                          </HStack>
+                        </CardBody>
+                      </Card>
+                    </HStack>
+
+                    <Card variant='outline'>
+                      <CardBody>
+                        <Heading>FYP</Heading>
+                        <ImageRadio
+                          image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/school/default/48px.svg'
+                          label='FYP'
+                          {...getRadioProps({ value: 'fyp' })}
+                        />
+                      </CardBody>
+                    </Card>
+                  </HStack>
+              )}
+            />
           </Section>
 
           <Section
