@@ -245,19 +245,19 @@ export default function Generate() {
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_6/default/48px.svg'
                               label='Months'
-                              {...getRadioProps({ value: '6mth' })}
+                              {...getRadioProps({ value: '6-Month Internship' })}
                             />
                             
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_3/default/48px.svg'
                               label='Months'
-                              {...getRadioProps({ value: '3mth' })}
+                              {...getRadioProps({ value: '3-Month Internship' })}
                             />
                             
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/filter_3/default/48px.svg'
                               label='Months Each for 2 Internships'
-                              {...getRadioProps({ value: '3mth2' })}
+                              {...getRadioProps({ value: 'Two 3-Month Internships' })}
                             />
                           </HStack>
                         </CardBody>
@@ -270,7 +270,7 @@ export default function Generate() {
                         <ImageRadio
                           image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/school/default/48px.svg'
                           label='FYP'
-                          {...getRadioProps({ value: 'fyp' })}
+                          {...getRadioProps({ value: 'FYP' })}
                         />
                       </CardBody>
                     </Card>
