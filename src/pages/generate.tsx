@@ -134,6 +134,7 @@ export default function Generate() {
   const majorWatch = useWatch({ control, name: 'major' })
   const fasWatch = useWatch({ control, name: 'fas' })
   const modulesWatch = useWatch({ control, name: 'modules' })
+  const internshipFypWatch = useWatch({ control, name: 'internshipFyp'})
 
   return (
     <ChakraProvider>
@@ -289,6 +290,7 @@ export default function Generate() {
                   <Text as='b'>Major</Text>
                   <Text as='b'>Focus Areas</Text>
                   <Text as='b'>Preferred Modules</Text>
+                  <Text as='b'>Internship/FYP</Text>
                 </VStack>
 
                 <Divider orientation='vertical' />
@@ -312,6 +314,7 @@ export default function Generate() {
                       .join(', ')
                   }
                   </Text>
+                  <Text>{internshipFypWatch}</Text>
                 </VStack>
               </HStack>
           </Section>
