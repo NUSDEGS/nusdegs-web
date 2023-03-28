@@ -236,10 +236,29 @@ export default function Generate() {
                         <CardBody>
                           <Heading>Internship</Heading>
                           <HStack>
-                            <ImageRadio image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/engineering/default/48px.svg' label='' isDisabled />
-                            <ImageRadio image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_6/default/48px.svg' label='Months' {...getRadioProps({ value: '6mth' })}/>
-                            <ImageRadio image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_3/default/48px.svg' label='Months' {...getRadioProps({ value: '3mth' })}/>
-                            <ImageRadio image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/filter_3/default/48px.svg' label='Months Each for 2 Internships' {...getRadioProps({ value: '3mth2' })}/>
+                            <ImageRadio
+                              image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/engineering/default/48px.svg'
+                              label=''
+                              isDisabled
+                            />
+
+                            <ImageRadio
+                              image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_6/default/48px.svg'
+                              label='Months'
+                              {...getRadioProps({ value: '6mth' })}
+                            />
+                            
+                            <ImageRadio
+                              image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_3/default/48px.svg'
+                              label='Months'
+                              {...getRadioProps({ value: '3mth' })}
+                            />
+                            
+                            <ImageRadio
+                              image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/filter_3/default/48px.svg'
+                              label='Months Each for 2 Internships'
+                              {...getRadioProps({ value: '3mth2' })}
+                            />
                           </HStack>
                         </CardBody>
                       </Card>
