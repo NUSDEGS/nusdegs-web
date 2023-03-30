@@ -3,7 +3,7 @@ import ImageRadio from '@/view/components/ImageRadio'
 import Plan from '@/view/components/Plan'
 import Section from '@/view/components/Section'
 
-import { Button, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Text, VStack } from '@chakra-ui/react'
+import { Button, Card, CardBody, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Radio, RadioGroup, Text, useRadioGroup, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { useForm, Controller, useWatch } from 'react-hook-form'
@@ -130,9 +130,11 @@ function getChosenFaLabels(fasWatch: any) {
 export default function Generate() {
   const { control } = useForm()
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
+  const { getRadioProps, getRootProps } = useRadioGroup()
   const majorWatch = useWatch({ control, name: 'major' })
   const fasWatch = useWatch({ control, name: 'fas' })
   const modulesWatch = useWatch({ control, name: 'modules' })
+  const internshipFypWatch = useWatch({ control, name: 'internshipFyp'})
 
   return (
     <ChakraProvider>
@@ -221,15 +223,74 @@ export default function Generate() {
           </Section>
 
           <Section
+            title='Internship or FYP?'
+            description='Choose your internship or final-year project (FYP) preference.'
+            hidden={currentSectionIndex !== 3}
+          >
+            <Controller
+              name='internshipFyp'
+              control={control}
+              render={({field}) => (
+                  <HStack {...getRootProps()} {...field}>
+                    <HStack>
+                      <Card variant='outline'>
+                        <CardBody>
+                          <Heading>Internship</Heading>
+                          <HStack>
+                            <ImageRadio
+                              image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/engineering/default/48px.svg'
+                              label=''
+                              isDisabled
+                            />
+
+                            <ImageRadio
+                              image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_6/default/48px.svg'
+                              label='Months'
+                              {...getRadioProps({ value: '6-Month Internship' })}
+                            />
+                            
+                            <ImageRadio
+                              image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_3/default/48px.svg'
+                              label='Months'
+                              {...getRadioProps({ value: '3-Month Internship' })}
+                            />
+                            
+                            <ImageRadio
+                              image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/filter_3/default/48px.svg'
+                              label='Months Each for 2 Internships'
+                              {...getRadioProps({ value: 'Two 3-Month Internships' })}
+                            />
+                          </HStack>
+                        </CardBody>
+                      </Card>
+                    </HStack>
+
+                    <Card variant='outline'>
+                      <CardBody>
+                        <Heading>FYP</Heading>
+                        <ImageRadio
+                          image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/school/default/48px.svg'
+                          label='FYP'
+                          {...getRadioProps({ value: 'FYP' })}
+                        />
+                      </CardBody>
+                    </Card>
+                  </HStack>
+              )}
+            />
+          </Section>
+
+          <Section
             title='All Good?'
             description='Check your choices.'
-            hidden={currentSectionIndex !== 3}
+            hidden={currentSectionIndex !== 4}
           >
             <HStack>
                 <VStack align='end'>
                   <Text as='b'>Major</Text>
                   <Text as='b'>Focus Areas</Text>
                   <Text as='b'>Preferred Modules</Text>
+                  <Text as='b'>Internship/FYP</Text>
                 </VStack>
 
                 <Divider orientation='vertical' />
@@ -253,6 +314,7 @@ export default function Generate() {
                       .join(', ')
                   }
                   </Text>
+                  <Text>{internshipFypWatch}</Text>
                 </VStack>
               </HStack>
           </Section>
@@ -260,7 +322,7 @@ export default function Generate() {
           <Section
             title='Plans'
             description='Here are your recommended plans.'
-            hidden={currentSectionIndex !== 4}
+            hidden={currentSectionIndex !== 5}
           >
             <Plan sems={[]} />
           </Section>
@@ -269,7 +331,7 @@ export default function Generate() {
             <Button
               colorScheme='green'
               onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              hidden={currentSectionIndex > 2}
+              hidden={currentSectionIndex > 3}
             >
               Next
             </Button>
@@ -277,8 +339,8 @@ export default function Generate() {
             <Button
               colorScheme='green'
               onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              isDisabled={currentSectionIndex > 3}
-              hidden={currentSectionIndex < 3}
+              isDisabled={currentSectionIndex > 4}
+              hidden={currentSectionIndex < 4}
             >
               Done
             </Button>

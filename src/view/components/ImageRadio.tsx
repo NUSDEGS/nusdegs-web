@@ -18,7 +18,7 @@ export default function ImageRadio(props: ImageRadioProps) {
 
   return (
     <Box as='label'>
-      <VStack cursor='pointer'>
+      <VStack cursor={props.isDisabled ? '' : 'pointer'}>
         <input hidden {...getInputProps()} />
         
         <Center boxSize='8rem' {...getCheckboxProps()}>

@@ -7,6 +7,10 @@ export default interface Request {
   id: number
   major: string
   fas: Fa[]
+  isFyp: boolean
+  is6MonthInternship: boolean
+  is3Month1Internship: boolean
+  is3Month2Internships: boolean
 }
 
 export function getRequestJson(requestFormData: any): Request {
@@ -18,6 +22,11 @@ export function getRequestJson(requestFormData: any): Request {
       .map(([fa, modules]): Fa => {
         const moduleStrings = modules as string[]
         return {name: fa, modules: moduleStrings}
-       })
+       }),
+
+    isFyp: requestFormData['internshipFyp'] === 'FYP',
+    is6MonthInternship: requestFormData['internshipFyp'] === '6-Month Internship',
+    is3Month1Internship: requestFormData['internshipFyp'] === '3-Month Internship',
+    is3Month2Internships: requestFormData['internshipFyp'] === 'Two 3-Month Internships'
   }
 }
