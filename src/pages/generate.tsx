@@ -328,22 +328,31 @@ export default function Generate() {
           </Section>
 
           <Center>
-            <Button
-              colorScheme='green'
-              onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              hidden={currentSectionIndex > 3}
-            >
-              Next
-            </Button>
+            <HStack spacing='1rem'>
+              <Button
+                onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
+                isDisabled={currentSectionIndex == 0}
+              >
+                Previous
+              </Button>
 
-            <Button
-              colorScheme='green'
-              onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-              isDisabled={currentSectionIndex > 4}
-              hidden={currentSectionIndex < 4}
-            >
-              Done
-            </Button>
+              <Button
+                colorScheme='green'
+                onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
+                hidden={currentSectionIndex > 3}
+              >
+                Next
+              </Button>
+
+              <Button
+                colorScheme='green'
+                onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
+                isDisabled={currentSectionIndex > 4}
+                hidden={currentSectionIndex < 4}
+              >
+                Done
+              </Button>
+            </HStack>
           </Center>
         </form>
       </main>
