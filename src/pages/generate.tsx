@@ -329,6 +329,13 @@ export default function Generate() {
 
           <Center>
             <Button
+              onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
+              isDisabled={currentSectionIndex == 0}
+            >
+              Previous
+            </Button>
+
+            <Button
               colorScheme='green'
               onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
               hidden={currentSectionIndex > 3}
