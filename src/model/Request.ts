@@ -11,6 +11,7 @@ export default interface Request {
   is6MonthInternship: boolean
   is3Month1Internship: boolean
   is3Month2Internships: boolean
+  maxMcs: number
 }
 
 export function getRequestJson(requestFormData: any): Request {
@@ -27,6 +28,7 @@ export function getRequestJson(requestFormData: any): Request {
     isFyp: requestFormData['internshipFyp'] === 'FYP',
     is6MonthInternship: requestFormData['internshipFyp'] === '6-Month Internship',
     is3Month1Internship: requestFormData['internshipFyp'] === '3-Month Internship',
-    is3Month2Internships: requestFormData['internshipFyp'] === 'Two 3-Month Internships'
+    is3Month2Internships: requestFormData['internshipFyp'] === 'Two 3-Month Internships',
+    maxMcs: requestFormData['maxMcs']
   }
 }
