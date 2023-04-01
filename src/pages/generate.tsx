@@ -320,6 +320,7 @@ export default function Generate() {
               'Choose whether you have been exempted from taking the Qualifying English Test ' +
               '(QET) or not.'
             }
+            hidden={currentSectionIndex !== 5}
           >
             <Controller
               name='qet'
