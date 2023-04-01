@@ -349,7 +349,7 @@ export default function Generate() {
             title='ID/CD'
             description={
               'Choose your area of interest for interdisciplinary (ID) and cross-' +
-              'disciplinary (CD) courses.'
+              'disciplinary (CD) modules.'
             }
           >
             <Controller
