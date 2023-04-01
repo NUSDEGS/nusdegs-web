@@ -324,7 +324,7 @@ export default function Generate() {
               name='qet'
               control={control}
               render={({field}) => (
-                <HStack align='top' {...qetRootProps()}>
+                <HStack align='top' {...qetRootProps()} {...field}>
                   <ImageRadio
                     image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/check/default/48px.svg'
                     label="Yes, I'm exempted"
