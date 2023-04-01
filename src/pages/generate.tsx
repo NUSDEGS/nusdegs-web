@@ -3,7 +3,7 @@ import ImageRadio from '@/view/components/ImageRadio'
 import Plan from '@/view/components/Plan'
 import Section from '@/view/components/Section'
 
-import { Button, Card, CardBody, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Radio, RadioGroup, Text, useRadioGroup, VStack } from '@chakra-ui/react'
+import { Button, Card, CardBody, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Radio, RadioGroup, Slider, SliderMark, SliderThumb, SliderTrack, Text, useRadioGroup, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { useForm, Controller, useWatch } from 'react-hook-form'
@@ -276,6 +276,34 @@ export default function Generate() {
                       </CardBody>
                     </Card>
                   </HStack>
+              )}
+            />
+          </Section>
+
+          <Section
+            title='Maximum Semester MCs'
+            description='Choose the maximum number of Modular Credits (MCs) for each semester.'
+          >
+            <Controller
+              name='maxMcs'
+              control={control}
+              render={({field}) => (
+                <Slider
+                  min={20}
+                  max={32}
+                  step={4}
+                  defaultValue={20}
+                  width='50%'
+                  {...field}
+                >
+                  <SliderMark as='b' value={20} marginTop='1rem' marginLeft='-0.5rem'>20</SliderMark>
+                  <SliderMark as='b' value={24} marginTop='1rem' marginLeft='-0.5rem'>24</SliderMark>
+                  <SliderMark as='b' value={28} marginTop='1rem' marginLeft='-0.5rem'>28</SliderMark>
+                  <SliderMark as='b' value={32} marginTop='1rem' marginLeft='-0.5rem'>32</SliderMark>
+
+                  <SliderTrack boxSize='0.5rem' rounded='md' />
+                  <SliderThumb bgColor='green.500' boxSize='1.5rem'/>
+                </Slider>
               )}
             />
           </Section>
