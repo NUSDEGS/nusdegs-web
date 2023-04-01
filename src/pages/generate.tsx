@@ -133,6 +133,7 @@ export default function Generate() {
   const { getRadioProps: internshipFypRadioProps, getRootProps: internshipFypRootProps }
     = useRadioGroup()
   const { getRadioProps: qetRadioProps, getRootProps: qetRootProps } = useRadioGroup()
+  const { getRadioProps: idCdRadioProps, getRootProps: idCdRootProps } = useRadioGroup()
 
   const majorWatch = useWatch({ control, name: 'major' })
   const fasWatch = useWatch({ control, name: 'fas' })
@@ -339,6 +340,58 @@ export default function Generate() {
                     {...qetRadioProps({ value: 'Not exempted' })}
                   />
                 </HStack>
+              )}
+            />
+          </Section>
+
+          <Section
+            title='ID/CD'
+            description={
+              'Choose your area of interest for interdisciplinary (ID) and cross-' +
+              'disciplinary (CD) courses.'
+            }
+          >
+            <Controller
+              name='idCd'
+              control={control}
+              render={({field}) => (
+                <Flex wrap='wrap' justify='space-around' align='top' {...idCdRootProps()} {...field}>
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/assignment_ind/default/48px.svg'
+                    label='Management and IT'
+                    {...idCdRadioProps({ value: 'Management and IT' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/biotech/default/48px.svg'
+                    label='Molecular Biology'
+                    {...idCdRadioProps({ value: 'Molecular Biology' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/diversity_2/default/48px.svg'
+                    label='Human Studies'
+                    {...idCdRadioProps({ value: 'Human Studies' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/auto_awesome/fill1/48px.svg'
+                    label='Astrophysics'
+                    {...idCdRadioProps({ value: 'Astrophysics' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/design_services/default/48px.svg'
+                    label='Design'
+                    {...idCdRadioProps({ value: 'Design' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/history_edu/default/48px.svg'
+                    label='History of Science'
+                    {...idCdRadioProps({ value: 'History of Science' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/cardiology/default/48px.svg'
+                    label='Medical Science'
+                    {...idCdRadioProps({ value: 'Medical Science' })}
+                  />
+                </Flex>
               )}
             />
           </Section>
