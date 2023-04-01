@@ -12,6 +12,7 @@ export default interface Request {
   is3Month1Internship: boolean
   is3Month2Internships: boolean
   maxMcs: number
+  doesNeedQet: boolean
 }
 
 export function getRequestJson(requestFormData: any): Request {
@@ -29,6 +30,7 @@ export function getRequestJson(requestFormData: any): Request {
     is6MonthInternship: requestFormData['internshipFyp'] === '6-Month Internship',
     is3Month1Internship: requestFormData['internshipFyp'] === '3-Month Internship',
     is3Month2Internships: requestFormData['internshipFyp'] === 'Two 3-Month Internships',
-    maxMcs: requestFormData['maxMcs']
+    maxMcs: requestFormData['maxMcs'],
+    doesNeedQet: requestFormData['qet'] !== 'Exempted'
   }
 }
