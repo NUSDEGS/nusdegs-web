@@ -351,6 +351,7 @@ export default function Generate() {
               'Choose your area of interest for interdisciplinary (ID) and cross-' +
               'disciplinary (CD) modules.'
             }
+            hidden={currentSectionIndex !== 6}
           >
             <Controller
               name='idCd'
