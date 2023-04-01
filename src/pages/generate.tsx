@@ -130,7 +130,8 @@ function getChosenFaLabels(fasWatch: any) {
 export default function Generate() {
   const { control } = useForm()
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
-  const { getRadioProps, getRootProps } = useRadioGroup()
+  const { getRadioProps: internshipFypRadioProps, getRootProps: internshipFypRootProps }
+    = useRadioGroup()
   const majorWatch = useWatch({ control, name: 'major' })
   const fasWatch = useWatch({ control, name: 'fas' })
   const modulesWatch = useWatch({ control, name: 'modules' })
@@ -232,7 +233,7 @@ export default function Generate() {
               name='internshipFyp'
               control={control}
               render={({field}) => (
-                  <HStack {...getRootProps()} {...field}>
+                  <HStack {...internshipFypRootProps()} {...field}>
                     <HStack>
                       <Card variant='outline'>
                         <CardBody>
@@ -247,19 +248,19 @@ export default function Generate() {
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_6/default/48px.svg'
                               label='Months'
-                              {...getRadioProps({ value: '6-Month Internship' })}
+                              {...internshipFypRadioProps({ value: '6-Month Internship' })}
                             />
                             
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_3/default/48px.svg'
                               label='Months'
-                              {...getRadioProps({ value: '3-Month Internship' })}
+                              {...internshipFypRadioProps({ value: '3-Month Internship' })}
                             />
                             
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/filter_3/default/48px.svg'
                               label='Months Each for 2 Internships'
-                              {...getRadioProps({ value: 'Two 3-Month Internships' })}
+                              {...internshipFypRadioProps({ value: 'Two 3-Month Internships' })}
                             />
                           </HStack>
                         </CardBody>
@@ -272,7 +273,7 @@ export default function Generate() {
                         <ImageRadio
                           image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/school/default/48px.svg'
                           label='FYP'
-                          {...getRadioProps({ value: 'FYP' })}
+                          {...internshipFypRadioProps({ value: 'FYP' })}
                         />
                       </CardBody>
                     </Card>
