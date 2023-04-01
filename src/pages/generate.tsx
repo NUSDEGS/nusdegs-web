@@ -141,6 +141,7 @@ export default function Generate() {
   const internshipFypWatch = useWatch({ control, name: 'internshipFyp'})
   const maxMcsWatch = useWatch({control, name: 'maxMcs'})
   const qetWatch = useWatch({ control, name: 'qet' })
+  const idCdWatch = useWatch({ control, name: 'idCd' })
 
   return (
     <ChakraProvider>
@@ -409,6 +410,7 @@ export default function Generate() {
                   <Text as='b'>Internship/FYP</Text>
                   <Text as='b'>Max MCs per Sem</Text>
                   <Text as='b'>QET</Text>
+                  <Text as='b'>ID/CD modules</Text>
                 </VStack>
 
                 <Divider orientation='vertical' />
@@ -435,6 +437,7 @@ export default function Generate() {
                   <Text>{internshipFypWatch}</Text>
                   <Text>{maxMcsWatch}</Text>
                   <Text>{qetWatch}</Text>
+                  <Text>{idCdWatch}</Text>
                 </VStack>
               </HStack>
           </Section>
