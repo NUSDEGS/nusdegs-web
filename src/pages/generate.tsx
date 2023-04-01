@@ -284,6 +284,7 @@ export default function Generate() {
           <Section
             title='Maximum Semester MCs'
             description='Choose the maximum number of Modular Credits (MCs) for each semester.'
+            hidden={currentSectionIndex !== 4}
           >
             <Controller
               name='maxMcs'
