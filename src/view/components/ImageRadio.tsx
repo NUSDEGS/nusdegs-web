@@ -25,7 +25,14 @@ export default function ImageRadio(props: ImageRadioProps) {
           <Image src={image} width='6rem' {...getLabelProps()}/>
         </Center>
 
-        <Text as='b' color={state.isChecked ? 'green.500' : ''}>{label}</Text>
+        <Text
+          as='b'
+          color={state.isChecked ? 'green.500' : ''}
+          align='center'
+          width='8rem'
+        >
+          {label}
+        </Text>
       </VStack>
     </Box>
   )
