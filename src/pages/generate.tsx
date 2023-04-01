@@ -132,6 +132,8 @@ export default function Generate() {
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
   const { getRadioProps: internshipFypRadioProps, getRootProps: internshipFypRootProps }
     = useRadioGroup()
+  const { getRadioProps: qetRadioProps, getRootProps: qetRootProps } = useRadioGroup()
+
   const majorWatch = useWatch({ control, name: 'major' })
   const fasWatch = useWatch({ control, name: 'fas' })
   const modulesWatch = useWatch({ control, name: 'modules' })
@@ -307,6 +309,34 @@ export default function Generate() {
                   <SliderTrack boxSize='0.5rem' rounded='md' />
                   <SliderThumb bgColor='green.500' boxSize='1.5rem'/>
                 </Slider>
+              )}
+            />
+          </Section>
+
+          <Section
+            title='QET'
+            description={
+              'Choose whether you have been exempted from taking the Qualifying English Test ' +
+              '(QET) or not.'
+            }
+          >
+            <Controller
+              name='qet'
+              control={control}
+              render={({field}) => (
+                <HStack align='top' {...qetRootProps()}>
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/check/default/48px.svg'
+                    label="Yes, I'm exempted"
+                    {...qetRadioProps({ value: 'Exempted' })}
+                  />
+
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/close/default/48px.svg'
+                    label="No, I'm not"
+                    {...qetRadioProps({ value: 'Not exempted' })}
+                  />
+                </HStack>
               )}
             />
           </Section>
