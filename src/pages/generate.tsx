@@ -3,7 +3,7 @@ import ImageRadio from '@/view/components/ImageRadio'
 import Plan from '@/view/components/Plan'
 import Section from '@/view/components/Section'
 
-import { Button, Card, CardBody, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Radio, RadioGroup, Text, useRadioGroup, VStack } from '@chakra-ui/react'
+import { Button, Card, CardBody, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Radio, RadioGroup, Slider, SliderMark, SliderThumb, SliderTrack, Text, useRadioGroup, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { useForm, Controller, useWatch } from 'react-hook-form'
@@ -130,11 +130,18 @@ function getChosenFaLabels(fasWatch: any) {
 export default function Generate() {
   const { control } = useForm()
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
-  const { getRadioProps, getRootProps } = useRadioGroup()
+  const { getRadioProps: internshipFypRadioProps, getRootProps: internshipFypRootProps }
+    = useRadioGroup()
+  const { getRadioProps: qetRadioProps, getRootProps: qetRootProps } = useRadioGroup()
+  const { getRadioProps: idCdRadioProps, getRootProps: idCdRootProps } = useRadioGroup()
+
   const majorWatch = useWatch({ control, name: 'major' })
   const fasWatch = useWatch({ control, name: 'fas' })
   const modulesWatch = useWatch({ control, name: 'modules' })
   const internshipFypWatch = useWatch({ control, name: 'internshipFyp'})
+  const maxMcsWatch = useWatch({control, name: 'maxMcs'})
+  const qetWatch = useWatch({ control, name: 'qet' })
+  const idCdWatch = useWatch({ control, name: 'idCd' })
 
   return (
     <ChakraProvider>
@@ -231,7 +238,7 @@ export default function Generate() {
               name='internshipFyp'
               control={control}
               render={({field}) => (
-                  <HStack {...getRootProps()} {...field}>
+                  <HStack {...internshipFypRootProps()} {...field}>
                     <HStack>
                       <Card variant='outline'>
                         <CardBody>
@@ -246,19 +253,19 @@ export default function Generate() {
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_6/default/48px.svg'
                               label='Months'
-                              {...getRadioProps({ value: '6-Month Internship' })}
+                              {...internshipFypRadioProps({ value: '6-Month Internship' })}
                             />
                             
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/looks_3/default/48px.svg'
                               label='Months'
-                              {...getRadioProps({ value: '3-Month Internship' })}
+                              {...internshipFypRadioProps({ value: '3-Month Internship' })}
                             />
                             
                             <ImageRadio
                               image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/filter_3/default/48px.svg'
                               label='Months Each for 2 Internships'
-                              {...getRadioProps({ value: 'Two 3-Month Internships' })}
+                              {...internshipFypRadioProps({ value: 'Two 3-Month Internships' })}
                             />
                           </HStack>
                         </CardBody>
@@ -271,7 +278,7 @@ export default function Generate() {
                         <ImageRadio
                           image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/school/default/48px.svg'
                           label='FYP'
-                          {...getRadioProps({ value: 'FYP' })}
+                          {...internshipFypRadioProps({ value: 'FYP' })}
                         />
                       </CardBody>
                     </Card>
@@ -281,9 +288,120 @@ export default function Generate() {
           </Section>
 
           <Section
+            title='Maximum Semester MCs'
+            description='Choose the maximum number of Modular Credits (MCs) for each semester.'
+            hidden={currentSectionIndex !== 4}
+          >
+            <Controller
+              name='maxMcs'
+              control={control}
+              render={({field}) => (
+                <Slider
+                  min={20}
+                  max={32}
+                  step={4}
+                  defaultValue={20}
+                  width='50%'
+                  {...field}
+                >
+                  <SliderMark as='b' value={20} marginTop='1rem' marginLeft='-0.5rem'>20</SliderMark>
+                  <SliderMark as='b' value={24} marginTop='1rem' marginLeft='-0.5rem'>24</SliderMark>
+                  <SliderMark as='b' value={28} marginTop='1rem' marginLeft='-0.5rem'>28</SliderMark>
+                  <SliderMark as='b' value={32} marginTop='1rem' marginLeft='-0.5rem'>32</SliderMark>
+
+                  <SliderTrack boxSize='0.5rem' rounded='md' />
+                  <SliderThumb bgColor='green.500' boxSize='1.5rem'/>
+                </Slider>
+              )}
+            />
+          </Section>
+
+          <Section
+            title='QET'
+            description={
+              'Choose whether you have been exempted from taking the Qualifying English Test ' +
+              '(QET) or not.'
+            }
+            hidden={currentSectionIndex !== 5}
+          >
+            <Controller
+              name='qet'
+              control={control}
+              render={({field}) => (
+                <HStack align='top' {...qetRootProps()} {...field}>
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/check/default/48px.svg'
+                    label="Yes, I'm exempted"
+                    {...qetRadioProps({ value: 'Exempted' })}
+                  />
+
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/close/default/48px.svg'
+                    label="No, I'm not"
+                    {...qetRadioProps({ value: 'Not exempted' })}
+                  />
+                </HStack>
+              )}
+            />
+          </Section>
+
+          <Section
+            title='ID/CD'
+            description={
+              'Choose your area of interest for interdisciplinary (ID) and cross-' +
+              'disciplinary (CD) modules.'
+            }
+            hidden={currentSectionIndex !== 6}
+          >
+            <Controller
+              name='idCd'
+              control={control}
+              render={({field}) => (
+                <Flex wrap='wrap' justify='space-around' align='top' {...idCdRootProps()} {...field}>
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/assignment_ind/default/48px.svg'
+                    label='Management and IT'
+                    {...idCdRadioProps({ value: 'Management and IT' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/biotech/default/48px.svg'
+                    label='Molecular Biology'
+                    {...idCdRadioProps({ value: 'Molecular Biology' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/diversity_2/default/48px.svg'
+                    label='Human Studies'
+                    {...idCdRadioProps({ value: 'Human Studies' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/auto_awesome/fill1/48px.svg'
+                    label='Astrophysics'
+                    {...idCdRadioProps({ value: 'Astrophysics' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/design_services/default/48px.svg'
+                    label='Design'
+                    {...idCdRadioProps({ value: 'Design' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/history_edu/default/48px.svg'
+                    label='History of Science'
+                    {...idCdRadioProps({ value: 'History of Science' })}
+                  />
+                  <ImageRadio
+                    image='https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/cardiology/default/48px.svg'
+                    label='Medical Science'
+                    {...idCdRadioProps({ value: 'Medical Science' })}
+                  />
+                </Flex>
+              )}
+            />
+          </Section>
+
+          <Section
             title='All Good?'
             description='Check your choices.'
-            hidden={currentSectionIndex !== 4}
+            hidden={currentSectionIndex !== 7}
           >
             <HStack>
                 <VStack align='end'>
@@ -291,6 +409,9 @@ export default function Generate() {
                   <Text as='b'>Focus Areas</Text>
                   <Text as='b'>Preferred Modules</Text>
                   <Text as='b'>Internship/FYP</Text>
+                  <Text as='b'>Max MCs per Sem</Text>
+                  <Text as='b'>QET</Text>
+                  <Text as='b'>ID/CD modules</Text>
                 </VStack>
 
                 <Divider orientation='vertical' />
@@ -315,6 +436,9 @@ export default function Generate() {
                   }
                   </Text>
                   <Text>{internshipFypWatch}</Text>
+                  <Text>{maxMcsWatch}</Text>
+                  <Text>{qetWatch}</Text>
+                  <Text>{idCdWatch}</Text>
                 </VStack>
               </HStack>
           </Section>
@@ -322,7 +446,7 @@ export default function Generate() {
           <Section
             title='Plans'
             description='Here are your recommended plans.'
-            hidden={currentSectionIndex !== 5}
+            hidden={currentSectionIndex !== 8}
           >
             <Plan sems={[]} />
           </Section>
@@ -339,7 +463,7 @@ export default function Generate() {
               <Button
                 colorScheme='green'
                 onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-                hidden={currentSectionIndex > 3}
+                hidden={currentSectionIndex > 6}
               >
                 Next
               </Button>
@@ -347,8 +471,8 @@ export default function Generate() {
               <Button
                 colorScheme='green'
                 onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
-                isDisabled={currentSectionIndex > 4}
-                hidden={currentSectionIndex < 4}
+                isDisabled={currentSectionIndex > 7}
+                hidden={currentSectionIndex < 7}
               >
                 Done
               </Button>
