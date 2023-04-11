@@ -167,6 +167,7 @@ export default function Generate() {
                   value='Computer Science'
                 />
               )}
+              rules={{ required: true }}
             />
           </Section>
 
