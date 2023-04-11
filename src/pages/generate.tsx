@@ -278,6 +278,13 @@ export default function Generate() {
             description='Choose your internship or final-year project (FYP) preference.'
             hidden={currentSectionIndex !== 3}
           >
+            <Text
+              color='red.500'
+              hidden={errors.internshipFyp === undefined}
+            >
+              Please choose an internship or FYP option.
+            </Text>
+
             <Controller
               name='internshipFyp'
               control={control}
@@ -328,6 +335,7 @@ export default function Generate() {
                     </Card>
                   </HStack>
               )}
+              rules={{ required: true }}
             />
           </Section>
 
