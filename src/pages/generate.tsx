@@ -376,6 +376,13 @@ export default function Generate() {
             }
             hidden={currentSectionIndex !== 5}
           >
+            <Text
+              color='red.500'
+              hidden={errors.qet === undefined}
+            >
+              Please specify if you are exempted or not.
+            </Text>
+
             <Controller
               name='qet'
               control={control}
@@ -394,6 +401,7 @@ export default function Generate() {
                   />
                 </HStack>
               )}
+              rules={{ required: true }}
             />
           </Section>
 
