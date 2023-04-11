@@ -128,7 +128,7 @@ function getChosenFaLabels(fasWatch: any) {
 }
 
 export default function Generate() {
-  const { control } = useForm()
+  const { control, trigger, formState: { errors } } = useForm({ mode: 'onTouched' })
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
   const { getRadioProps: internshipFypRadioProps, getRootProps: internshipFypRootProps }
     = useRadioGroup()
@@ -465,7 +465,11 @@ export default function Generate() {
 
               <Button
                 colorScheme='green'
-                onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
+                onClick={() => {
+                  trigger(fieldNames[currentSectionIndex])
+                  .then((isValid) => isValid ? setCurrentSectionIndex(currentSectionIndex + 1) : '')
+                  .catch((error) => console.error(error))
+                }}
                 hidden={currentSectionIndex > 6}
               >
                 Next
