@@ -532,7 +532,8 @@ export default function Generate() {
                 colorScheme='green'
                 onClick={() => {
                   trigger(fieldNames[currentSectionIndex])
-                  .then((isValid) => isValid ? setCurrentSectionIndex(currentSectionIndex + 1) : '')
+                  // Use && to execute setCurrentSectionIndex(...) only if isValid is true.
+                  .then((isValid) => isValid && setCurrentSectionIndex(currentSectionIndex + 1))
                   .catch((error) => console.error(error))
                 }}
                 hidden={currentSectionIndex > 6}
