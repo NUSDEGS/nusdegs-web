@@ -143,6 +143,8 @@ export default function Generate() {
   const qetWatch = useWatch({ control, name: 'qet' })
   const idCdWatch = useWatch({ control, name: 'idCd' })
 
+  const fieldNames = ['major', 'fas', 'modules', 'internshipFyp', 'maxMcs', 'qet', 'idCd']
+
   return (
     <ChakraProvider>
       <Head>
