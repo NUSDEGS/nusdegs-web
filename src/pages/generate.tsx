@@ -158,6 +158,13 @@ export default function Generate() {
             description='Choose your major.'
             hidden={currentSectionIndex !== 0}
           >
+            <Text
+              color='red.500'
+              hidden={errors.major === undefined}
+            >
+              Please choose a major.
+            </Text>
+
             <Controller
               name='major'
               control={control}
