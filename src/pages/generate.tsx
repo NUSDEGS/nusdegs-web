@@ -413,6 +413,13 @@ export default function Generate() {
             }
             hidden={currentSectionIndex !== 6}
           >
+            <Text
+              color='red.500'
+              hidden={errors.idCd === undefined}
+            >
+              Please choose an ID/CD group.
+            </Text>
+
             <Controller
               name='idCd'
               control={control}
@@ -455,6 +462,7 @@ export default function Generate() {
                   />
                 </Flex>
               )}
+              rules={{ required: true }}
             />
           </Section>
 
