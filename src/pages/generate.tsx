@@ -185,6 +185,13 @@ export default function Generate() {
             description='Choose your focus areas.'
             hidden={currentSectionIndex !== 1}
           >
+            <Text
+              color='red.500'
+              hidden={errors.fas === undefined}
+            >
+              Please choose at least one FA but no more than two.
+            </Text>
+
             <Flex wrap='wrap' justify='center'>
               {
                 FAS.map(fa => (
@@ -199,6 +206,17 @@ export default function Generate() {
                         value={fa.label}
                       />
                     )}
+                    rules={{
+                      validate: {
+                        checkAtLeast1FA: (_, fields) => Object
+                                                          .values(fields.fas)
+                                                          .filter(fa => fa).length >= 1,
+
+                        checkAtMost2FAs: (_, fields) => Object
+                                                          .values(fields.fas)
+                                                          .filter(fa => fa).length <= 2
+                      }
+                    }}
                   />
                 ))
               }
