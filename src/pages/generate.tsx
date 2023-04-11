@@ -228,6 +228,17 @@ export default function Generate() {
             description='Choose your preferred modules for your focus areas.'
             hidden={currentSectionIndex !== 2}
           >
+            <Text
+              color='red.500'
+              hidden={errors.modules === undefined}
+            >
+              {
+                getChosenFaLabels(fasWatch).length < 2
+                  ? 'Please choose no more than 5 modules.'
+                  : 'Please choose no more than 3 modules for each FA.'
+              }
+            </Text>
+
             <Flex width='100%' align='start' justify='space-around'>
             {
               getChosenFaLabels(fasWatch)
@@ -248,6 +259,11 @@ export default function Generate() {
                               </Checkbox>
                             </CheckboxGroup>
                           )}
+                          rules={{
+                            validate: checkedModules => getChosenFaLabels(fasWatch).length < 2
+                              ? (checkedModules ?? []).length <= 5
+                              : (checkedModules ?? []).length <= 3
+                          }}
                         />
                       ))
                     }
