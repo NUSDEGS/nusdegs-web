@@ -128,7 +128,7 @@ function getChosenFaLabels(fasWatch: any) {
 }
 
 export default function Generate() {
-  const { control } = useForm()
+  const { control, trigger, formState: { errors } } = useForm({ mode: 'onTouched' })
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
   const { getRadioProps: internshipFypRadioProps, getRootProps: internshipFypRootProps }
     = useRadioGroup()
@@ -143,6 +143,8 @@ export default function Generate() {
   const qetWatch = useWatch({ control, name: 'qet' })
   const idCdWatch = useWatch({ control, name: 'idCd' })
 
+  const fieldNames = ['major', 'fas', 'modules', 'internshipFyp', 'maxMcs', 'qet', 'idCd']
+
   return (
     <ChakraProvider>
       <Head>
@@ -156,6 +158,13 @@ export default function Generate() {
             description='Choose your major.'
             hidden={currentSectionIndex !== 0}
           >
+            <Text
+              color='red.500'
+              hidden={errors.major === undefined}
+            >
+              Please choose a major.
+            </Text>
+
             <Controller
               name='major'
               control={control}
@@ -167,6 +176,7 @@ export default function Generate() {
                   value='Computer Science'
                 />
               )}
+              rules={{ required: true }}
             />
           </Section>
 
@@ -175,6 +185,13 @@ export default function Generate() {
             description='Choose your focus areas.'
             hidden={currentSectionIndex !== 1}
           >
+            <Text
+              color='red.500'
+              hidden={errors.fas === undefined}
+            >
+              Please choose at least one FA but no more than two.
+            </Text>
+
             <Flex wrap='wrap' justify='center'>
               {
                 FAS.map(fa => (
@@ -189,6 +206,17 @@ export default function Generate() {
                         value={fa.label}
                       />
                     )}
+                    rules={{
+                      validate: {
+                        checkAtLeast1FA: (_, fields) => Object
+                                                          .values(fields.fas)
+                                                          .filter(fa => fa).length >= 1,
+
+                        checkAtMost2FAs: (_, fields) => Object
+                                                          .values(fields.fas)
+                                                          .filter(fa => fa).length <= 2
+                      }
+                    }}
                   />
                 ))
               }
@@ -200,6 +228,17 @@ export default function Generate() {
             description='Choose your preferred modules for your focus areas.'
             hidden={currentSectionIndex !== 2}
           >
+            <Text
+              color='red.500'
+              hidden={errors.modules === undefined}
+            >
+              {
+                getChosenFaLabels(fasWatch).length < 2
+                  ? 'Please choose no more than 5 modules.'
+                  : 'Please choose no more than 3 modules for each FA.'
+              }
+            </Text>
+
             <Flex width='100%' align='start' justify='space-around'>
             {
               getChosenFaLabels(fasWatch)
@@ -220,6 +259,11 @@ export default function Generate() {
                               </Checkbox>
                             </CheckboxGroup>
                           )}
+                          rules={{
+                            validate: checkedModules => getChosenFaLabels(fasWatch).length < 2
+                              ? (checkedModules ?? []).length <= 5
+                              : (checkedModules ?? []).length <= 3
+                          }}
                         />
                       ))
                     }
@@ -234,6 +278,13 @@ export default function Generate() {
             description='Choose your internship or final-year project (FYP) preference.'
             hidden={currentSectionIndex !== 3}
           >
+            <Text
+              color='red.500'
+              hidden={errors.internshipFyp === undefined}
+            >
+              Please choose an internship or FYP option.
+            </Text>
+
             <Controller
               name='internshipFyp'
               control={control}
@@ -284,6 +335,7 @@ export default function Generate() {
                     </Card>
                   </HStack>
               )}
+              rules={{ required: true }}
             />
           </Section>
 
@@ -324,6 +376,13 @@ export default function Generate() {
             }
             hidden={currentSectionIndex !== 5}
           >
+            <Text
+              color='red.500'
+              hidden={errors.qet === undefined}
+            >
+              Please specify if you are exempted or not.
+            </Text>
+
             <Controller
               name='qet'
               control={control}
@@ -342,6 +401,7 @@ export default function Generate() {
                   />
                 </HStack>
               )}
+              rules={{ required: true }}
             />
           </Section>
 
@@ -353,6 +413,13 @@ export default function Generate() {
             }
             hidden={currentSectionIndex !== 6}
           >
+            <Text
+              color='red.500'
+              hidden={errors.idCd === undefined}
+            >
+              Please choose an ID/CD group.
+            </Text>
+
             <Controller
               name='idCd'
               control={control}
@@ -395,6 +462,7 @@ export default function Generate() {
                   />
                 </Flex>
               )}
+              rules={{ required: true }}
             />
           </Section>
 
@@ -462,7 +530,12 @@ export default function Generate() {
 
               <Button
                 colorScheme='green'
-                onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
+                onClick={() => {
+                  // Use && to execute setCurrentSectionIndex(...) only if isValid is true.
+                  trigger(fieldNames[currentSectionIndex])
+                    .then((isValid) => isValid && setCurrentSectionIndex(currentSectionIndex + 1))
+                    .catch((error) => console.error(error))
+                }}
                 hidden={currentSectionIndex > 6}
               >
                 Next
