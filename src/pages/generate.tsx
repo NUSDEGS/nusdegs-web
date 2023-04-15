@@ -2,6 +2,7 @@ import ImageCheckbox from '@/view/components/ImageCheckbox'
 import ImageRadio from '@/view/components/ImageRadio'
 import Plan from '@/view/components/Plan'
 import Section from '@/view/components/Section'
+import { getRequestJson } from '@/model/Request'
 
 import { Button, Card, CardBody, Center, ChakraProvider, Checkbox, CheckboxGroup, Divider, Flex, Heading, HStack, Radio, RadioGroup, Slider, SliderMark, SliderThumb, SliderTrack, Text, useRadioGroup, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
@@ -128,8 +129,9 @@ function getChosenFaLabels(fasWatch: any) {
 }
 
 export default function Generate() {
-  const { control } = useForm()
+  const { control, getValues } = useForm()
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
+  const [ semData, setSemData ] = useState([]);
   const { getRadioProps: internshipFypRadioProps, getRootProps: internshipFypRootProps }
     = useRadioGroup()
   const { getRadioProps: qetRadioProps, getRootProps: qetRootProps } = useRadioGroup()
@@ -142,6 +144,21 @@ export default function Generate() {
   const maxMcsWatch = useWatch({control, name: 'maxMcs'})
   const qetWatch = useWatch({ control, name: 'qet' })
   const idCdWatch = useWatch({ control, name: 'idCd' })
+
+  const handleDone = async () => {
+    // Convert form data to json data
+    const requestJson = getRequestJson(getValues());
+    const response = await fetch('/api/handle_request', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestJson)
+    });
+    const responseJson = await response.json();
+    setSemData(responseJson);
+    setCurrentSectionIndex(currentSectionIndex + 1);
+  }
 
   return (
     <ChakraProvider>
@@ -448,7 +465,7 @@ export default function Generate() {
             description='Here are your recommended plans.'
             hidden={currentSectionIndex !== 8}
           >
-            <Plan sems={[]} />
+            <Plan sems={semData} />
           </Section>
 
           <Center>
@@ -470,7 +487,7 @@ export default function Generate() {
 
               <Button
                 colorScheme='green'
-                onClick={() => setCurrentSectionIndex(currentSectionIndex + 1)}
+                onClick={handleDone}
                 isDisabled={currentSectionIndex > 7}
                 hidden={currentSectionIndex < 7}
               >

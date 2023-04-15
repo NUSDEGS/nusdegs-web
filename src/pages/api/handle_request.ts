@@ -4,11 +4,15 @@ const APP_SERVER_URL: string = "server address";
 var seq : number = 0;
 
 async function sendToApplication(
-    data: Object
+    data: JSON
 ) {
     try {
         const res = await fetch(APP_SERVER_URL, {
             method: "POST",
+            headers: {
+                "origin": "localhost:3000",
+                "content-type": "application/json",
+            },
             body: JSON.stringify(data)
         });
 
@@ -27,10 +31,10 @@ export default async function HandleRequest(
             throw new Error("Operation not allowed.");
         }
 
-        const data = JSON.parse(req.body);
+        const data = req.body;
 
         // Preprocessing if needed
-        data.seq = seq;
+        data.id = seq;
         seq++;
 
         const result = await sendToApplication(data);
@@ -42,6 +46,7 @@ export default async function HandleRequest(
         }
     } catch (err) {
         if (err instanceof Error) {
+            console.log(err.message);
             res.status(500).send(err.message);
         }
     }
