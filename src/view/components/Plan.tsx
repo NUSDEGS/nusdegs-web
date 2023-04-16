@@ -2,7 +2,7 @@ import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPane
 import ModuleList, { Module } from "./ModuleList";
 
 export interface Semester {
-  seqNum: number
+  seq_num: number
   modules: Module[]
 }
 
@@ -10,18 +10,25 @@ interface PlanProps {
   sems: Semester[]
 }
 
+function getSemesterName(seq_num: number) {
+  const year = Math.floor((seq_num - 1) / 4) + 1
+  const sem = seq_num % 4;
+  if (sem === 1 || sem === 2) return `Year ${year} Semester ${sem}`
+  else return `Year ${year} Special term ${2 - sem % 2}`
+}
+
 export default function Plan(props: PlanProps) {
   return (
-    <Accordion width='100%' borderWidth='1px' allowToggle allowMultiple>
+    <Accordion width='100%' borderWidth='1px' allowToggle>
       {
-        props.sems.map(sem => (
+        props.sems.map(sem => {
+          return (
           <AccordionItem>
             <AccordionButton>
               <Flex width='100%'>
                 <Heading size='md'>
                   {
-                    `Year ${Math.floor(sem.seqNum / 2) + 1} ` +
-                    `Semester ${Math.floor(sem.seqNum % 2) + 1}`
+                    getSemesterName(sem.seq_num)
                   }
                 </Heading>
                 <Spacer />
@@ -33,7 +40,7 @@ export default function Plan(props: PlanProps) {
               <ModuleList modules={sem.modules} />
             </AccordionPanel>
           </AccordionItem>
-        ))
+        )})
       }
     </Accordion>
   )

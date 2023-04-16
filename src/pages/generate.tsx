@@ -129,7 +129,7 @@ function getChosenFaLabels(fasWatch: any) {
 }
 
 export default function Generate() {
-  const { control, trigger, formState: { errors } } = useForm({ mode: 'onTouched' })
+  const { control, trigger, formState: { errors }, getValues } = useForm({ mode: 'onTouched' })
   const [ currentSectionIndex, setCurrentSectionIndex ] = useState(0)
   const [ semData, setSemData ] = useState([]);
   const { getRadioProps: internshipFypRadioProps, getRootProps: internshipFypRootProps }
@@ -156,7 +156,7 @@ export default function Generate() {
       body: JSON.stringify(requestJson)
     });
     const responseJson = await response.json();
-    setSemData(responseJson);
+    setSemData(responseJson.sems);
     setCurrentSectionIndex(currentSectionIndex + 1);
   }
   const fieldNames = ['major', 'fas', 'modules', 'internshipFyp', 'maxMcs', 'qet', 'idCd']
