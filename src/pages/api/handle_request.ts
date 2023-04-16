@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const APP_SERVER_URL: string = "http://127.0.0.1:8000/get_plans/";
+const APP_SERVER_URL: string = "http://0.0.0.0:8000/get_plans/";
 var seq : number = 0;
 
 async function sendToApplication(
