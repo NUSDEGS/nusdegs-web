@@ -233,6 +233,7 @@ export default function Generate() {
                                                           .filter(fa => fa).length <= 2
                       }
                     }}
+                    key={""}
                   />
                 ))
               }
@@ -260,7 +261,7 @@ export default function Generate() {
               getChosenFaLabels(fasWatch)
                 .map(faLabel => FAS.find(fa => fa.label === faLabel))
                 .map(fa => (
-                  <VStack align='start'>
+                  <VStack align='start' key={""}>
                     <Heading size='sm'>{fa?.label}</Heading>
                     {
                       fa?.modules
@@ -280,6 +281,7 @@ export default function Generate() {
                               ? (checkedModules ?? []).length <= 5
                               : (checkedModules ?? []).length <= 3
                           }}
+                          key={""}
                         />
                       ))
                     }
