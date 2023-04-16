@@ -23,7 +23,7 @@ export default function Plan(props: PlanProps) {
       {
         props.sems.map(sem => {
           return (
-          <AccordionItem>
+          <AccordionItem key={""}>
             <AccordionButton>
               <Flex width='100%'>
                 <Heading size='md'>

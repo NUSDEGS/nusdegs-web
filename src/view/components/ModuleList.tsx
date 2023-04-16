@@ -25,14 +25,14 @@ export default function ModuleList(props: ModuleListProps) {
       <Tbody>
       {
         props.modules.map(module => (
-          <Tr>
+          <Tr key={""}>
             <Td width='60%'>{`${module.code} ${module.title}`}</Td>
             <Td width='10%'>{module.mcs}</Td>
             <Td>
               <HStack>
                 {
                   module.tags.map(tag => (
-                    <Tag>
+                    <Tag key={""}>
                       <TagLabel>{tag.toUpperCase()}</TagLabel>
                     </Tag>
                   ))
